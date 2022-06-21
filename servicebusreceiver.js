@@ -1,5 +1,6 @@
 import { converterXmlParaJson } from "./convercao.js";
 import { ServiceBusClient } from "@azure/service-bus";
+import { consumirBlobXml } from "./requestxml.js";
 
 const chaveConexao = "Endpoint=sb://contosoxml.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=EsFFVpnZtd1F1w6gDjUo2o4HJHgWS08+rKSOaGpSeTU="
 const serviceBusClient = new ServiceBusClient(chaveConexao)
@@ -11,9 +12,12 @@ const receiver = serviceBusClient.createReceiver("filaxml");
 // console.log(myMessages)
 
 const myMessageHandler = async (message) => {
-    const json = converterXmlParaJson(`${message.body}`)
-    console.log(JSON.stringify(json))
-    //console.log(`message.body: ${message.body}`);
+    console.log(JSON.stringify(message.body.data.url))
+    let urlXml = JSON.stringify(message.body.data.url)
+    let xml = await consumirBlobXml(urlXml)
+    console.log("xml: "+xml)
+    let json = converterXmlParaJson(xml)
+    console.log("json: "+JSON.stringify(json))
 };
 
 const myErrorHandler = async (args) => {

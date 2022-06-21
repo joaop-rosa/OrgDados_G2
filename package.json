@@ -19,6 +19,8 @@
   "homepage": "https://github.com/joaop-rosa/OrgDados_G2#readme",
   "dependencies": {
     "@azure/service-bus": "^7.5.1",
-    "x2js": "^3.4.3"
+    "axios": "^0.27.2",
+    "x2js": "^3.4.3",
+    "xmlhttprequest": "^1.8.0"
   }
 }
