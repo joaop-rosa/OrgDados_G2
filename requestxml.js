@@ -1,8 +1,13 @@
 import axios from "axios";
 export async function consumirBlobXml(urlxml){
-    const resposta = await axios.get(urlxml)
-    return resposta.data
+    
+    return await axios.get(urlxml).then((resposta) => resposta.data)
 
 }
-// const teste = await consumirBlobXml("https://contosostoragefaccat.blob.core.windows.net/contosoxml/book (1).xml")
-// console.log(teste.data)
+
+export async function updateBlobJson(json){
+
+    return await axios.post("https://contosostoragefaccat.blob.core.windows.net/contosojson",json).then((resposta) => console.log(resposta)).catch((error)=> console.log(error))
+
+}
+
