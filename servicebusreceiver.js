@@ -7,21 +7,20 @@ const serviceBusClient = new ServiceBusClient(chaveConexao)
 
 const receiver = serviceBusClient.createReceiver("filaxml");
 
-async function programa(){
+async function main() {
     for await (let message of receiver.getMessageIterator()) {
-        //console.log(JSON.stringify(message.body.data.url))
+        console.log("message: " + JSON.stringify(message.body))
         const urlXml = JSON.stringify(message.body.data.url)
         let urlXmlFormatada = urlXml.substring(1, urlXml.length - 1);
         let xml = await consumirBlobXml(urlXmlFormatada)
         let json = await converterXmlParaJson(xml)
-        //console.log(JSON.stringify(json))
-        //await updateBlobJson(json)
-        receiver.completeMessage(message)
+        await updateBlobJson(json)
+        await receiver.completeMessage(message)
     }
 }
 
 
-await programa()
+await main()
 await receiver.close()
 await serviceBusClient.close()
 
