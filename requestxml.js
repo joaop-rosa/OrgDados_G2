@@ -10,9 +10,9 @@ export async function consumirBlobXml(urlxml) {
 export async function updateBlobJson(json) {
 
     const blobServiceClient = new BlobServiceClient(
-        `https://contosostoragefaccat.blob.core.windows.net/?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-06-24T03:19:02Z&st=2022-06-23T19:19:02Z&spr=https,http&sig=6MQFWk90mGjmU6MG4WG5BPmIZIt2QYHsJJYAnTihCVc%3D`
+        `https://contosostoragefaccat.blob.core.windows.net/?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2022-07-01T08:02:44Z&st=2022-06-28T00:02:44Z&spr=https&sig=UIWyRbaaCXxrC4dsndyszn4o1puSbhKQ8Hr89T%2Bspvs%3D`
     );
-
+    //DefaultEndpointsProtocol=https;AccountName=contosostoragefaccat;AccountKey=cBW5cxXd9kRL8tge0SShJkSYyam6MPESN7enc02nb73fqE5HX8CxoUPyBBh0YeNhMq2Ujx/y/32V+AStEVmkrw==;EndpointSuffix=core.windows.net
     const containerName = "contosojson";
 
     const containerClient = blobServiceClient.getContainerClient(containerName);
